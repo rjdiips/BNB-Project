@@ -1,0 +1,33 @@
+header.site-header(role="banner")
+    .container.header-inner
+        // left menu
+        nav.nav-left(role="navigation" aria-label="Primary")
+            ul.menu-left
+                li.menu-item.dropdown
+                    a.dropdown-toggle(href="#" aria-haspopup="true" aria-expanded="false")
+                        | PRODUCTS
+                        span.arrow ▾
+                    ul.dropdown-menu
+                        li: a(href="#") Sesame Oils
+                        li: a(href="#") Sesame Seeds
+                        li: a(href="#") Ingredients
+                li.menu-item: a(href="#who") WHO WE ARE
+                li.menu-item: a(href="#brand") OUR BRAND
+
+        // center brand
+        a.brand(href="/" aria-label="BNB Home")
+            img(src="assets/images/logo.svg" alt="BNB" height="44")
+
+        // right menu
+        nav.nav-right(role="navigation" aria-label="Secondary")
+            ul.menu-right
+                li.menu-item.dropdown
+                    a.dropdown-toggle(href="#" aria-haspopup="true" aria-expanded="false")
+                        | SOLUTIONS
+                        span.arrow ▾
+                    ul.dropdown-menu
+                        li: a(href="#private") Private Label
+                        li: a(href="#bulk") Bulk Export
+                        li: a(href="#custom") Custom Formulation
+                li.menu-item: a(href="#news") NEWSROOM
+                li.menu-item: a(href="#contact") CONTACT

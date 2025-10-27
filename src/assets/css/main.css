@@ -1,0 +1,344 @@
+/* ---------- Reset / base ---------- */
+* {
+  box-sizing: border-box;
+}
+html,
+body {
+  height: 100%;
+  margin: 0;
+}
+body {
+  font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto,
+    "Helvetica Neue", Arial;
+  color: #111;
+  background: #fff;
+}
+
+/* ---------- Container helper ---------- */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* =========================
+   NAVBAR
+   ========================= */
+
+/* Basic nav wrapper */
+.site-header {
+  padding: 18px 0;
+}
+
+/* Header inner layout */
+.container.header-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+  position: relative;
+}
+
+/* Brand / logo */
+.brand {
+  display: block;
+  margin: 0 auto;
+  order: 0;
+}
+.brand img {
+  height: 44px;
+  display: block;
+}
+
+/* Left and right nav wrappers */
+.nav-left,
+.nav-right {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+/* Menu lists */
+.menu-left,
+.menu-right {
+  display: flex;
+  gap: 22px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  align-items: center;
+}
+
+/* Menu link styles */
+.menu-left a,
+.menu-right a,
+.dropdown-toggle {
+  text-decoration: none;
+  color: #222;
+  font-weight: 600;
+  font-size: 13px;
+  background: none;
+  border: 0;
+  cursor: pointer;
+  padding: 6px 8px;
+  line-height: 1;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: inherit;
+}
+
+/* Dropdown root */
+.menu-item.dropdown {
+  position: relative;
+}
+
+/* Arrow style */
+.dropdown-toggle .arrow {
+  font-size: 10px;
+  opacity: 0.85;
+  transform-origin: center;
+  transition: transform 0.18s ease;
+}
+
+/* ---------- Dropdown (fixed for hover access) ---------- */
+/* Position submenu immediately under the toggle (no gap) */
+.dropdown-menu {
+  position: absolute;
+  top: 100%; /* was calc(100% + 8px) — now directly below */
+  left: 0;
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+  padding: 8px 6px;
+  min-width: 190px;
+  z-index: 200;
+  list-style: none;
+  margin: 0;
+
+  /* hide/show */
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(6px); /* subtle slide on show */
+  transition: opacity 180ms ease, transform 180ms ease;
+  transition-delay: 0s;
+}
+
+/* show menu on hover */
+.menu-item.dropdown:hover > .dropdown-menu,
+.menu-item.dropdown:focus-within > .dropdown-menu {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0);
+  transition-delay: 0s;
+}
+
+/* gentle hide delay to prevent flicker if mouse leaves briefly */
+.menu-item.dropdown:not(:hover):not(:focus-within) > .dropdown-menu {
+  transition-delay: 100ms; /* 80–160ms feels natural */
+}
+
+/* rotate arrow on hover */
+.menu-item.dropdown:hover > .dropdown-toggle .arrow {
+  transform: rotate(180deg);
+}
+
+/* Dropdown items */
+.dropdown-menu li {
+  padding: 6px 0;
+}
+.dropdown-menu li a {
+  color: #333;
+  font-weight: 500;
+  display: block;
+  padding: 8px 12px;
+  text-decoration: none;
+  border-radius: 6px;
+}
+
+/* Hover/focus styles for menu items */
+.menu-left a:hover,
+.menu-right a:hover,
+.dropdown-toggle:hover,
+.dropdown-menu li a:hover {
+  color: #2e6b4b;
+  background: rgba(46, 107, 75, 0.04);
+}
+
+/* Keyboard focus outline */
+.menu-left a:focus,
+.menu-right a:focus,
+.dropdown-toggle:focus,
+.dropdown-menu a:focus {
+  outline: 3px solid rgba(46, 107, 75, 0.12);
+  outline-offset: 2px;
+  border-radius: 6px;
+}
+
+/* Small visual spacing tweaks */
+.menu-item {
+  white-space: nowrap;
+}
+
+/* On small screens hide desktop navs */
+@media (max-width: 960px) {
+  .nav-left,
+  .nav-right {
+    display: none;
+  }
+  .brand {
+    margin: 0 auto;
+  }
+  .site-header {
+    padding: 14px 12px;
+  }
+}
+
+/* =========================
+   HERO (image card + badges)
+   ========================= */
+
+.hero {
+  padding: 28px 0 48px;
+}
+
+/* actual image */
+.hero-img {
+  display: block;
+  width: 100%;
+  height: auto;
+  object-position: center;
+}
+
+/* =========================
+   FOOTER
+   ========================= */
+
+.site-footer {
+  background: #324b3b; /* dark green - adjust to match design */
+  color: #e9efe6; /* light/cream text */
+  padding: 56px 0 28px;
+  font-size: 15px;
+  line-height: 1.6;
+}
+
+.footer-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* Top area layout: brand + 4 link cols */
+.footer-top {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr 1fr; /* brand is wider */
+  gap: 36px;
+  align-items: start;
+  padding-bottom: 36px;
+}
+
+/* brand column */
+.footer-col--brand {
+  --logo-height: 76px;
+}
+.footer-brand {
+  display: flex;
+  align-items: flex-start;
+  gap: 18px;
+  text-decoration: none;
+  color: inherit;
+}
+.footer-logo {
+  height: var(--logo-height);
+  display: block;
+}
+.footer-desc {
+  margin: 18px 0 0;
+  color: rgba(233, 239, 230, 0.95);
+  max-width: 380px;
+  font-size: 14px;
+}
+
+/* link columns */
+.footer-heading {
+  font-weight: 700;
+  font-size: 13px;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.95);
+  margin: 0 0 16px;
+  letter-spacing: 0.6px;
+}
+.footer-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.footer-list li {
+  margin: 10px 0;
+}
+.footer-list a {
+  color: rgba(233, 239, 230, 0.95);
+  text-decoration: none;
+  font-weight: 400;
+  display: inline-block;
+}
+.footer-list a:hover {
+  color: #ffffff;
+  text-decoration: underline;
+}
+
+/* bottom row */
+.footer-bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  border-top: 1px solid rgba(255, 255, 255, 0.04);
+  padding-top: 18px;
+  margin-top: 12px;
+  font-size: 13px;
+  color: rgba(233, 239, 230, 0.85);
+}
+.footer-bottom-nav {
+  margin-left: auto;
+}
+.footer-bottom-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  gap: 18px;
+  align-items: center;
+}
+.footer-bottom-list a {
+  color: rgba(233, 239, 230, 0.85);
+  text-decoration: none;
+  font-weight: 500;
+}
+.footer-bottom-list a:hover {
+  text-decoration: underline;
+  color: #fff;
+}
+
+/* small screens: stack columns */
+@media (max-width: 960px) {
+  .footer-top {
+    grid-template-columns: 1fr;
+    gap: 18px;
+  }
+  .footer-desc {
+    max-width: 100%;
+  }
+  .footer-bottom {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+  .footer-bottom-list {
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+}
