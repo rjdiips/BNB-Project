@@ -25,12 +25,19 @@ body {
    NAVBAR
    ========================= */
 
-/* Basic nav wrapper */
+/* Basic nav wrapper
+   Use fixed positioning so the header reliably stays on top across browsers.
+   JS will add top padding to <main> to prevent content being hidden under the header. */
 .site-header {
   padding: 18px 0;
-  position: sticky;
+  position: fixed;
   top: 0;
+  left: 0;
+  right: 0;
   background: #fff;
+  z-index: 1000;
+  width: 100%;
+  box-shadow: 0 2px 8px rgba(15, 23, 11, 0.04); /* subtle separation */
 }
 
 /* Header inner layout */
