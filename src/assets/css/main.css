@@ -25,9 +25,7 @@ body {
    NAVBAR
    ========================= */
 
-/* Basic nav wrapper
-   Use fixed positioning so the header reliably stays on top across browsers.
-   JS will add top padding to <main> to prevent content being hidden under the header. */
+/* Fixed positon navbar wrapper */
 .site-header {
   padding: 18px 0;
   position: fixed;
@@ -37,7 +35,7 @@ body {
   background: #fff;
   z-index: 1000;
   width: 100%;
-  box-shadow: 0 2px 8px rgba(15, 23, 11, 0.04); /* subtle separation */
+  box-shadow: 0 2px 8px rgba(15, 23, 11, 0.04);
 }
 
 /* Header inner layout */
@@ -208,14 +206,13 @@ body {
 }
 
 /* =========================
-   HERO (image card + badges)
+   HERO
    ========================= */
 
 .hero {
   padding: 28px 0 48px;
 }
 
-/* actual image */
 .hero-img {
   display: block;
   width: 100%;
@@ -244,7 +241,7 @@ body {
 /* Top area layout: brand + 4 link cols */
 .footer-top {
   display: grid;
-  grid-template-columns: 2fr 1fr 1fr 1fr 1fr; /* brand is wider */
+  grid-template-columns: 2fr 1fr 1fr 1fr 1fr; /* brand size*/
   gap: 36px;
   align-items: start;
   padding-bottom: 36px;
