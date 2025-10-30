@@ -14,7 +14,7 @@ body {
   background: #fff;
 }
 
-/* ---------- Container helper ---------- */
+/* ---------- Container ---------- */
 .container {
   max-width: 1200px;
   margin: 0 auto;
@@ -398,7 +398,6 @@ body {
   height: auto;
   display: block;
   object-fit: contain;
-  border-radius: 0; /* no CSS rounding since image already has it */
   box-shadow: 0 2px 12px rgba(0, 0, 0, 0.05); /* optional subtle lift */
 }
 
@@ -429,7 +428,7 @@ body {
 }
 
 /* =========================
-   PARTNERS / LOGOS (Available On / Featured In)
+   LOGOS (Available On / Featured In)
    ========================= */
 
 .partners-section {
@@ -518,12 +517,78 @@ body {
 }
 
 /* =========================
-   VIDEO-PLACEHOLDER IMAGE
+   VIDEO SECTION
    ========================= */
+.video-section {
+  padding: 60px 0;
+  background: #f8f9fa;
+}
 
-.video {
+.video-wrapper {
+  position: relative;
   width: 100%;
-  height: auto;
+  max-width: 1200px;
+  margin: 0 auto;
+  aspect-ratio: 16 / 9;
+  border-radius: 10px;
+  overflow: hidden;
+  background: #000;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+  transition: all 0.3s ease;
+}
+
+/* thumbnail image */
+.video-thumb {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
   display: block;
-  margin: 0 0 60px;
+  cursor: pointer;
+  filter: brightness(70%);
+}
+
+/* play button */
+.play-btn {
+  position: absolute;
+  inset: 0;
+  margin: auto;
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  border: none;
+  background: rgba(255, 255, 255, 0.85);
+  color: #2e4b38;
+  font-size: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+.play-btn:hover {
+  background: rgba(255, 255, 255, 0.95);
+  transform: scale(1.05);
+}
+
+/* iframe (after click) */
+.video-wrapper iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: none;
+  border-radius: 10px;
+  opacity: 0;
+  animation: fadeIn 0.4s ease forwards;
+}
+
+/* simple fade-in animation */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }

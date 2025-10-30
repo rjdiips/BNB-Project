@@ -1,20 +1,11 @@
 //- src/views/sections/products.pug
+include ../mixins/product-card.pug
+
 section.products-section
     .container
         h2.section-title Our Products
 
         .products-grid
-            .product-card
-                .product-card__visual
-                    img.product-img(src="assets/images/product.png" alt="Virgin Sesame Oil")
-                .product-card__caption Virgin Sesame Oil
-
-            .product-card
-                .product-card__visual
-                    img.product-img(src="assets/images/product.png" alt="Refined Sesame Oil")
-                .product-card__caption Refined Sesame Oil
-
-            .product-card
-                .product-card__visual
-                    img.product-img(src="assets/images/product.png" alt="Roasted Sesame Oil")
-                .product-card__caption Roasted Sesame Oil
+            +productCard('assets/images/product.png', 'Virgin Sesame Oil', 'Virgin Sesame Oil')
+            +productCard('assets/images/product.png', 'Refined Sesame Oil', 'Refined Sesame Oil')
+            +productCard('assets/images/product.png', 'Roasted Sesame Oil', 'Roasted Sesame Oil')
