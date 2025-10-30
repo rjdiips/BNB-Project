@@ -17,7 +17,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   /* ========== HIDE NAVBAR ON VIDEO SECTION SCROLL ========== */
   const header = document.querySelector(".site-header");
-  const videoSection = document.querySelector(".video-section");
+  const videoSection = document.querySelector(".video-wrapper");
 
   if (header && videoSection) {
     const observer = new IntersectionObserver(
