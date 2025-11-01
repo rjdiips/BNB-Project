@@ -73,7 +73,6 @@ body {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 36px;
   position: relative;
 }
 
@@ -223,6 +222,15 @@ body {
   white-space: nowrap;
 }
 /* progressively reduce gap */
+@media (max-width: 1400px) {
+  .menu-left,
+  .menu-right {
+    gap: 48px;
+  }
+  /* .header-inner {
+    gap: 36px;
+  } */
+}
 @media (max-width: 1240px) {
   .menu-left,
   .menu-right {
