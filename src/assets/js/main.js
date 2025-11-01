@@ -1,6 +1,24 @@
 document.addEventListener("DOMContentLoaded", () => {
   /* =============== NAVBAR JS =============== */
 
+  /* ========== ADD SHADOW ONLY WHEN SCROLLED ========== */
+  const header = document.querySelector(".site-header");
+
+  if (header) {
+    const toggleShadow = () => {
+      if (window.scrollY > 0) {
+        header.classList.add("scrolled");
+      } else {
+        header.classList.remove("scrolled");
+      }
+    };
+
+    // run once on load
+    toggleShadow();
+    // run on scroll
+    window.addEventListener("scroll", toggleShadow);
+  }
+
   /* ========== FIX FOR FIXED HEADER ========== */
   // When header is fixed we must offset the main content so it isn't hidden.
   const headerEl = document.querySelector(".site-header");
@@ -15,31 +33,42 @@ document.addEventListener("DOMContentLoaded", () => {
     window.addEventListener("resize", setMainPadding);
   }
 
-  /* ========== HIDE NAVBAR ON VIDEO SECTION SCROLL ========== */
-  const header = document.querySelector(".site-header");
-  const videoSection = document.querySelector(".video-wrapper");
+  /* ========== HIDE NAVBAR WHEN VIDEO SECTION OR FOOTER IS VISIBLE ========== */
 
-  if (header && videoSection) {
+  // const header = document.querySelector(".site-header");  //already defined above
+  const videoSection = document.querySelector(".video-wrapper");
+  const siteFooter = document.querySelector(".site-footer");
+
+  const sectionsToObserve = [videoSection, siteFooter].filter(Boolean);
+
+  if (header && sectionsToObserve.length > 0) {
+    const visibleSections = new Set();
+
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
-            // when video section becomes visible, hide the navbar
-            header.classList.add("hide");
+            visibleSections.add(entry.target);
           } else {
-            // when you scroll back up, show the navbar again
-            header.classList.remove("hide");
+            visibleSections.delete(entry.target);
           }
         });
+        // If any observed section is visible, hide the header
+        if (visibleSections.size > 0) {
+          header.classList.add("hide");
+        } else {
+          header.classList.remove("hide");
+        }
       },
       {
-        threshold: 0.2, // trigger when 20% of the video section is visible
+        // triggers when 30% of section is visible
+        threshold: 0.3,
       }
     );
 
-    observer.observe(videoSection);
+    // 4. Observe each section
+    sectionsToObserve.forEach((section) => observer.observe(section));
   }
 
-  /* ========== FUTURE SECTION PLACEHOLDERS ========== */
-  // Example: Hero.init(), ScrollEffects.init(), etc.
+  // =============== END NAVBAR JS =============== //
 });
