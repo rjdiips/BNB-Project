@@ -516,55 +516,6 @@ body {
 }
 
 /* =========================
-   HERO VIDEO
-   ========================= */
-
-.hero-video {
-  padding: 46px 40px 8px;
-}
-
-/* wrapper specific to hero (keeps your .video-wrapper untouched) */
-.hero-video-wrapper {
-  position: relative;
-  width: 100%;
-  /* max-width: 1380px; */
-  margin: 0 auto; /* center the wrapper on large screens */
-  aspect-ratio: 16 / 9;
-  border-radius: 20px;
-  overflow: hidden;
-}
-
-/* when video iframe is injected, it will fill wrapper. keep radius consistent */
-.hero-video-wrapper iframe {
-  width: 100%;
-  height: 100%;
-  display: block;
-  border: 0;
-  border-radius: inherit;
-}
-
-/* responsive */
-@media (max-width: 1100px) {
-  .hero-video-wrapper {
-    max-width: 1100px;
-    border-width: 3px;
-    border-radius: 16px;
-  }
-}
-
-@media (max-width: 700px) {
-  .hero-video {
-    padding: 28px 0 40px;
-  }
-  .hero-video-wrapper {
-    max-width: calc(100% - 32px);
-    margin: 0 16px;
-    border-width: 2px;
-    border-radius: 12px;
-  }
-}
-
-/* =========================
    PRODUCTS GRID / CARDS
    ========================= */
 
@@ -746,6 +697,58 @@ body {
 }
 
 /* =========================
+   HERO VIDEO
+   ========================= */
+
+.hero-video {
+  padding: 46px 40px 8px;
+}
+
+/* Wrapper always maintains 16:9 ratio */
+.hero-video-wrapper {
+  position: relative;
+  width: 100%;
+  max-width: 1480px;
+  margin: 0 auto;
+  aspect-ratio: 16 / 9;
+  border-radius: 32px;
+  overflow: hidden;
+  background-color: #000; /* fallback color */
+}
+
+/* The iframe will perfectly overlay the thumbnail */
+.hero-video-wrapper iframe {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+  border-radius: inherit;
+  object-fit: cover;
+}
+
+/* responsive */
+@media (max-width: 1100px) {
+  .hero-video-wrapper {
+    max-width: 1100px;
+    border-width: 3px;
+    border-radius: 16px;
+  }
+}
+
+@media (max-width: 700px) {
+  .hero-video {
+    padding: 28px 0 40px;
+  }
+  .hero-video-wrapper {
+    max-width: calc(100% - 32px);
+    margin: 0 16px;
+    border-width: 2px;
+    border-radius: 12px;
+  }
+}
+
+/* =========================
    VIDEO SECTION
    ========================= */
 
@@ -762,11 +765,14 @@ body {
 
 /* thumbnail image */
 .video-thumb {
+  position: absolute;
+  inset: 0;
   width: 100%;
   height: 100%;
+  object-fit: cover; /* crop but don't stretch */
+  object-position: center;
   display: block;
-  cursor: pointer;
-  filter: brightness(70%);
+  filter: brightness(72%);
 }
 
 /* play button */
@@ -774,22 +780,20 @@ body {
   position: absolute;
   inset: 0;
   margin: auto;
-  width: 80px;
-  height: 80px;
-  border-radius: 50%;
+  width: 120px;
+  height: 120px;
+  background: url("assets/images/play-btn.svg") center center no-repeat;
+  background-size: contain;
   border: none;
-  background: rgba(255, 255, 255, 0.85);
-  color: var(--Hunter-Green);
-  font-size: 36px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  outline: none;
   cursor: pointer;
-  transition: all 0.25s ease;
+  transition: transform 0.25s ease, opacity 0.25s ease;
 }
 
 .play-btn:hover {
-  background: rgba(255, 255, 255, 0.95);
+  background: url("assets/images/play-btn.svg") center center no-repeat;
+  background-size: contain;
+  opacity: 0.9;
   transform: scale(1.05);
 }
 
@@ -819,7 +823,7 @@ body {
 /* =========================
    Video Fade-In Animation
    ========================= */
-/* Video Fade-In Animation (used when JS adds .fade-in-video) */
+/* Video fade-in animation */
 .fade-in-video {
   position: absolute;
   inset: 0;
@@ -828,10 +832,9 @@ body {
   border: none;
   opacity: 0;
   animation: fadeInVideo 1s ease forwards;
-  border-radius: inherit; /* match wrapper radius */
-  z-index: 0;
+  border-radius: inherit;
+  z-index: 1;
 }
-
 @keyframes fadeInVideo {
   from {
     opacity: 0;
