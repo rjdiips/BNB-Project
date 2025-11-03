@@ -221,6 +221,7 @@ body {
 .menu-item {
   white-space: nowrap;
 }
+
 /* progressively reduce gap */
 @media (max-width: 1400px) {
   .menu-left,
@@ -275,7 +276,7 @@ body {
    ========================= */
 
 .hero {
-  padding: 37px 40px 48px;
+  padding: 37px 40px 23px;
 }
 
 .hero-wrapper {
@@ -375,6 +376,7 @@ body {
   background: var(--Hunter-Green, #3b5138);
   color: #fff;
   padding: 200px 0 0;
+  margin-top: 165px;
   font-size: 15px;
   line-height: 1.6;
 }
@@ -514,12 +516,61 @@ body {
 }
 
 /* =========================
+   HERO VIDEO
+   ========================= */
+
+.hero-video {
+  padding: 46px 40px 8px;
+}
+
+/* wrapper specific to hero (keeps your .video-wrapper untouched) */
+.hero-video-wrapper {
+  position: relative;
+  width: 100%;
+  /* max-width: 1380px; */
+  margin: 0 auto; /* center the wrapper on large screens */
+  aspect-ratio: 16 / 9;
+  border-radius: 20px;
+  overflow: hidden;
+}
+
+/* when video iframe is injected, it will fill wrapper. keep radius consistent */
+.hero-video-wrapper iframe {
+  width: 100%;
+  height: 100%;
+  display: block;
+  border: 0;
+  border-radius: inherit;
+}
+
+/* responsive */
+@media (max-width: 1100px) {
+  .hero-video-wrapper {
+    max-width: 1100px;
+    border-width: 3px;
+    border-radius: 16px;
+  }
+}
+
+@media (max-width: 700px) {
+  .hero-video {
+    padding: 28px 0 40px;
+  }
+  .hero-video-wrapper {
+    max-width: calc(100% - 32px);
+    margin: 0 16px;
+    border-width: 2px;
+    border-radius: 12px;
+  }
+}
+
+/* =========================
    PRODUCTS GRID / CARDS
    ========================= */
 
 .products-section {
   background: #fff;
-  margin: 0 90px;
+  margin: 170px 90px;
 }
 
 /* Section title */
@@ -752,7 +803,7 @@ body {
   border: none;
   border-radius: 10px;
   opacity: 0;
-  animation: fadeIn 0.4s ease forwards;
+  /* animation: fadeIn 0.4s ease forwards; */
 }
 
 /* simple fade-in animation */
@@ -762,5 +813,32 @@ body {
   }
   to {
     opacity: 1;
+  }
+}
+
+/* =========================
+   Video Fade-In Animation
+   ========================= */
+/* Video Fade-In Animation (used when JS adds .fade-in-video) */
+.fade-in-video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: none;
+  opacity: 0;
+  animation: fadeInVideo 1s ease forwards;
+  border-radius: inherit; /* match wrapper radius */
+  z-index: 0;
+}
+
+@keyframes fadeInVideo {
+  from {
+    opacity: 0;
+    transform: scale(1.02);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
   }
 }
